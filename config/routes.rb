@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  root 'users/homes#top'
-  get '/about' => 'users/homes#about', as: 'about'
   devise_for :users
+  root 'homes#top'
+  get '/about' => 'homes#about', as: 'about'
+
   resources :tourisms
   resources :comments, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]

@@ -1,0 +1,2 @@
+class Tourism < ApplicationRecord
+end

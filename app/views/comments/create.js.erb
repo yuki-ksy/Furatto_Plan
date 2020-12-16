@@ -1,0 +1,2 @@
+$("#comments-<%= @tourism.id %>").html("<%= j(render 'comment', { tourism: @tourism,tourism_comment: @tourism_comment ,tourism_comments: @tourism_comments }) %>");
+$("textarea").val('');

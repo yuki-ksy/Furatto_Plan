@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_074035) do
+ActiveRecord::Schema.define(version: 2020_12_15_115520) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -28,22 +28,23 @@ ActiveRecord::Schema.define(version: 2020_12_12_074035) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "genre"
+    t.integer "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "images", force: :cascade do |t|
     t.integer "tourism_id"
-    t.string "image_"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tourism_id"], name: "index_images_on_tourism_id"
   end
 
   create_table "prefectures", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "prefecture"
   end
 
   create_table "tourisms", force: :cascade do |t|

@@ -1,0 +1,20 @@
+ユーザー情報編集
+
+<%= form_with model: @user, local: true do |f| %>
+
+<%= f.attachment_field :profile_image %>
+
+<%= f.text_field :last_name, class: "form-control",autofocus: true, autocomplete: "last_name", placeholder: "姓" %>
+
+<%= f.text_field :first_name, class: "form-control",autofocus: true, autocomplete: "first_name", placeholder: "名" %>
+
+<%= f.text_field :user_name, class: "form-control",autofocus: true, autocomplete: "user_name", placeholder: "ユーザーネーム" %>
+
+<%= f.text_field :email, class: "form-control",autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+
+<%= f.select :gender, User.genders.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+
+<%= f.submit 'Update', class: "btn btn-primary btn-block" %>
+
+<% end %>
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_15_115520) do
+ActiveRecord::Schema.define(version: 2020_12_12_074035) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_12_15_115520) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.integer "genre"
+    t.string "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,9 +42,10 @@ ActiveRecord::Schema.define(version: 2020_12_15_115520) do
   end
 
   create_table "prefectures", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "prefecture"
   end
 
   create_table "tourisms", force: :cascade do |t|
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_12_15_115520) do
     t.integer "budget"
     t.float "latitude"
     t.float "longitude"
+    t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

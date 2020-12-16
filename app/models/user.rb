@@ -11,5 +11,5 @@ class User < ApplicationRecord
 
 
 
-  enum gender: {男性:1, 女性:2}
+  # enum gender: {男性:1, 女性:2}
 end

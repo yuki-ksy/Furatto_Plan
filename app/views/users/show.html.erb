@@ -1,0 +1,22 @@
+マイページ
+
+
+登録情報
+
+
+<%= link_to '編集する', edit_user_path, class: "btn btn-success" %>
+<%= link_to "パスワードを変更する",edit_user_password_path , class: 'btn btn-primary' %>
+
+
+<%= attachment_image_tag @user, :profile_image, fallback:"no_image.jpg", size: '40x40' %>
+
+<%= @user.user_name %>
+
+<%= @user.last_name %>&nbsp;&nbsp;<%= @user.first_name %>
+
+<%= @user.last_name_kana %>&nbsp;&nbsp;<%= @user.first_name_kana %>
+
+<%= @user.gender %>
+
+<%= @user.email %>
+

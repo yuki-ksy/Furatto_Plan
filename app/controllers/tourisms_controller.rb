@@ -5,6 +5,11 @@ class TourismsController < ApplicationController
 
   def create
     @tourism = Tourism.new(tourism_params)
+    results = Geocoder.search(tourism_params[:address])
+    geocode = results.first.coordinates
+    @tourism.latitude = geocode[0]
+
+     @tourism.longitude= geocode[1]
     if @tourism.save
       redirect_to tourism_path(@tourism.id)
     else
@@ -12,8 +17,8 @@ class TourismsController < ApplicationController
       render :index
     end
   end
-  
- 
+
+
 
   def index
     @tourisms = Tourism.all
@@ -30,6 +35,6 @@ class TourismsController < ApplicationController
   private
   def tourism_params
     params[:tourism][:user_id] = current_user.id
-    params.require(:tourism).permit(:user_id, :genre_id, :prefecture_id, :name, :production, :budget, :latitude, :longitude, images_images: [])
+    params.require(:tourism).permit(:user_id, :genre_id, :prefecture_id, :name, :production, :budget, :address, images_images: [])
   end
 end

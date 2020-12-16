@@ -9,6 +9,7 @@ class CreateTourisms < ActiveRecord::Migration[5.2]
       t.integer :budget
       t.float :latitude
       t.float :longitude
+      t.text :address
 
       t.timestamps
     end

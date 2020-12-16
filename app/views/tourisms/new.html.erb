@@ -8,11 +8,17 @@
 
 <%= f.text_field :production, class: "form-control",autofocus: true, autocomplete: "production", placeholder: "スポット紹介" %>
 
-<%= f.select :prefecture_id, Prefecture.prefectures, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+<%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name,
+        {prompt: "sss"}, {class:  'form-control btn btn-info'}) %>
 
-<%= f.select :genre_id, Genre.genres, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+
+<%= f.collection_select(:genre_id, Genre.all, :id, :genre,
+        {prompt: "sss"}, {class:  'form-control btn btn-info'}) %>
+
 
 <%= f.text_field :budget, class: "form-control",autofocus: true, autocomplete: "budget", placeholder: "予算" %>円
+
+<%= f.text_field :address, class: "form-control",autofocus: true, autocomplete: "address", placeholder: "アドレス" %>
 
 <%= f.submit '新規登録', class: "btn btn-primary btn-block" %>
 

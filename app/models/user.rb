@@ -6,10 +6,11 @@ class User < ApplicationRecord
 
   has_many :tourisms
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   attachment :profile_image
 
+  enum gender: {男性:1, 女性:2}
+  
 
-
-  # enum gender: {男性:1, 女性:2}
 end

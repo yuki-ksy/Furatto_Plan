@@ -1,1 +1,17 @@
 Hello World!
+
+
+<%= form_with url:tourisms_path, method: :get, local: true do |f| %>
+  <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: "---"}) %>
+  <%= f.collection_select(:genre_id, Genre.all, :id, :genre, {prompt: "---"}) %>
+  <%= f.text_field :budget, autofocus: true, autocomplete: "budget", placeholder: "予算" %>
+  <%= f.submit 'Search' %>
+<% end %>
+
+<% @male_favorited_tourisms.each do |note| %>
+<%= note.name %>
+<% end %>
+
+<% @female_favorited_tourisms.each do |note| %>
+<%= note.name %>
+<% end %>

@@ -1,5 +1,8 @@
+
+
 <% tourism_comments.each do |tourism_comment| %>
-  <%= attachment_image_tag tourism_comment.user, :profile_image, fallback:"no_image.jpg", size: '40x40' %>
+
+    <%= attachment_image_tag tourism_comment.user, :profile_image, fallback:"no_image.jpg", size: '40x40' %>
     <%= tourism_comment.user.user_name %>
     <%= tourism_comment.comment %>
     <% if tourism_comment.user == current_user %>
@@ -9,6 +12,8 @@
 
 <%= form_with(model:[tourism, tourism_comment], remote:true) do |f| %>
   <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "" %>
+  <div class="text-right" >
   <%= f.submit "送信", class: "btn btn-sm btn-base-1 mt-20 pull-left" %></td>
+  </div>
 <% end %>
 

@@ -1,0 +1,6 @@
+
+
+退会ページ
+
+<%= link_to "退会しない", edit_user_registration_path, class: 'btn btn-primary' %>
+<%= link_to "退会する", users_unsubscribe_path, method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger" %>

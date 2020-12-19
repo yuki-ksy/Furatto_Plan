@@ -35,13 +35,15 @@ ActiveRecord::Schema.define(version: 2020_12_12_074035) do
 
   create_table "images", force: :cascade do |t|
     t.integer "tourism_id"
-    t.string "image_"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tourism_id"], name: "index_images_on_tourism_id"
   end
 
   create_table "prefectures", force: :cascade do |t|
     t.string "name"
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -55,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_074035) do
     t.integer "budget"
     t.float "latitude"
     t.float "longitude"
+    t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

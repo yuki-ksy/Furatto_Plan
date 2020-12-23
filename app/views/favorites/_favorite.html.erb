@@ -1,11 +1,11 @@
 <% if tourism.favorited_by?(current_user) %>
   <%= link_to tourism_favorites_path(tourism), method: :delete, remote: true do %>
     <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-    <%= tourism.favorites.count %>
+    いいね&nbsp;&nbsp;<%= tourism.favorites.count %>件
   <% end %>
 <% else %>
   <%= link_to tourism_favorites_path(tourism), method: :post, remote: true do %>
     <i class="far fa-heart" aria-hidden="true"></i>
-    <%= tourism.favorites.count %>
+    いいね&nbsp;&nbsp;<%= tourism.favorites.count %>件
   <% end %>
 <% end %>

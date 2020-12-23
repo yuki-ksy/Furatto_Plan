@@ -1,25 +1,58 @@
-スポット新規登録
+<div class = "container">
+  
+  <% if @tourism.errors.any? %>
+    <ul>
+      <%= @tourism.errors.count %>errors prohibited this obj from being saved:
+      <% @tourism.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  
+  <h4 class = "title", style = "margin: 30px;">スポット新規登録</h4>
+  <div class="row">
+    <%= form_with model: @tourism, local: true do |f| %>
+    <ul>
+      <li class="image">
+        <label for="image">スポット写真</label>
+        <%= f.attachment_field :images_images, multiple: true %>
+      </li>
 
-<%= form_with model: @tourism, local: true do |f| %>
+      <li class="name">
+        <label for="name">スポット名</label>
+        <%= f.text_field :name, class: "form-control",autofocus: true, autocomplete: "name", placeholder: "スポット名" %>
+      </li>
 
-<%= f.attachment_field :images_images, multiple: true %>
+      <li class="production">
+        <label for="production">スポット紹介</label>
+        <%= f.text_field :production, class: "form-control",autofocus: true, autocomplete: "production", placeholder: "スポット紹介" %>
+      </li>
 
-<%= f.text_field :name, class: "form-control",autofocus: true, autocomplete: "name", placeholder: "スポット名" %>
+      <li class="prefecture">
+        <label for="prefecture">都道府県</label>
+        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name,
+                                  {prompt: "都道府県"}, {class:  'form-control'}) %>
+      </li>
 
-<%= f.text_field :production, class: "form-control",autofocus: true, autocomplete: "production", placeholder: "スポット紹介" %>
+      <li class="genre">
+        <label for="genre">目的</label>
+        <%= f.collection_select(:genre_id, Genre.all, :id, :genre,
+                                  {prompt: "目的"}, {class:  'form-control'}) %>
+      </li>
 
-<%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name,
-        {prompt: "sss"}, {class:  'form-control btn btn-info'}) %>
+      <li class="budget">
+        <label for="budget">予算</label>
+        <%= f.text_field :budget, class: "form-control",autofocus: true, autocomplete: "budget", placeholder: "予算(数字のみ入力)" %>
+      </li>
 
+      <li class="address">
+        <label for="address">住所</label>
+        <%= f.text_field :address, class: "form-control",autofocus: true, autocomplete: "address", placeholder: "住所" %>
+      </li>
+    </ul>
 
-<%= f.collection_select(:genre_id, Genre.all, :id, :genre,
-        {prompt: "sss"}, {class:  'form-control btn btn-info'}) %>
+      <%= f.submit 'スポット新規登録', class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+</div>
 
-
-<%= f.text_field :budget, class: "form-control",autofocus: true, autocomplete: "budget", placeholder: "予算" %>円
-
-<%= f.text_field :address, class: "form-control",autofocus: true, autocomplete: "address", placeholder: "アドレス" %>
-
-<%= f.submit '新規登録', class: "btn btn-primary btn-block" %>
-
-<% end %>

@@ -1,3 +1,40 @@
 // Place all the styles related to the tourisms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.tourism-index{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.spot-image{
+  margin : 30px;
+}
+
+
+ul li {
+    list-style: none;
+}
+
+.container .row form {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+}
+
+.container .row ul li {
+  display: flex;
+  align-items: center;
+}
+
+.container .row ul li + li {
+  margin-top: 32px;
+}
+
+.container .row ul li label {
+  min-width: 160px;
+}
+
+

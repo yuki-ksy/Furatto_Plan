@@ -5,7 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 Genre.create(genre: "デート")
+Genre.create(genre: "ひとり旅")
+Genre.create(genre: "グルメ")
+Genre.create(genre: "カフェ")
+Genre.create(genre: "女子会")
+Genre.create(genre: "ドライブ")
+Genre.create(genre: "観光")
+Genre.create(genre: "散歩")
 Prefecture.create(name: '北海道', slug: 'hokkaido')
 Prefecture.create(name: '青森', slug: 'aomori')
 Prefecture.create(name: '秋田', slug: 'akita')

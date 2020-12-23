@@ -9,7 +9,7 @@ class TourismsController < ApplicationController
       redirect_to tourism_path(@tourism.id)
     else
       @tourisms = Tourism.all
-      render :index
+      render :new
     end
   end
 
@@ -31,6 +31,7 @@ class TourismsController < ApplicationController
     end
     # =ここまで=========================================================================
 
+
   end
 
 
@@ -47,12 +48,33 @@ class TourismsController < ApplicationController
   end
 
 
+
+  def edit
+    @tourism = Tourism.find(params[:id])
+  end
+
+  def update
+    @tourism = Tourism.find(params[:id])
+    if @tourism.update(tourism_params)
+      redirect_to tourisms_path, notice: 'You have updated user successfully.'
+    else
+      render :edit
+    end
+  end
+
+
+  def destroy
+    tourism = Tourism.find(params[:id])
+    tourism.destroy
+    redirect_to root_path
+  end
+
+
   private
 
   def tourism_params
     params[:tourism][:user_id] = current_user.id
     params.require(:tourism).permit(:user_id, :genre_id, :prefecture_id, :name, :production, :budget, :address, images_images: [])
   end
-
 
 end

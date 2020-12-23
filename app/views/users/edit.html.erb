@@ -1,20 +1,55 @@
-ユーザー情報編集
+<div class = container>
 
-<%= form_with model: @user, local: true do |f| %>
+  <% if @user.errors.any? %>
+    <ul>
+      <%= @user.errors.count %>errors prohibited this obj from being saved:
+      <% @user.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<%= f.attachment_field :profile_image %>
+    <h4 class = "title", style = "margin: 30px;">ユーザー情報編集</h4>
 
-<%= f.text_field :last_name, class: "form-control",autofocus: true, autocomplete: "last_name", placeholder: "姓" %>
+    <div class = row>
+      <%= form_with model: @user, local: true do |f| %>
+        <ul>
+          <li class="image">
+            <label for="image">プロフィール写真</label>
+            <%= attachment_image_tag(@user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg", size:'150x150') %>
+            <%= f.attachment_field :profile_image %>
+          </li>
 
-<%= f.text_field :first_name, class: "form-control",autofocus: true, autocomplete: "first_name", placeholder: "名" %>
+          <li class="full_name">
+            <label for="full_name">氏名</label>
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "姓" %>&nbsp;&nbsp;
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder: "名" %>
+          </li>
 
-<%= f.text_field :user_name, class: "form-control",autofocus: true, autocomplete: "user_name", placeholder: "ユーザーネーム" %>
+          <li class="full_name_kana">
+            <label for="full_name_kana">氏名（カナ）</label>
+            <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", placeholder: "姓（カナ）" %>&nbsp;&nbsp;
+            <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", placeholder: "名（カナ）" %>
+          </li>
 
-<%= f.text_field :email, class: "form-control",autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+          <li class="user_name">
+            <label for="user_name">ユーザーネーム</label>
+            <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", placeholder: "ユーザーネーム" %>
+          </li>
 
-<%= f.select :gender, User.genders.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+           <li class="email">
+            <label for="email">メールアドレス</label>
+            <%= f.text_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+          </li>
 
-<%= f.submit 'Update', class: "btn btn-primary btn-block" %>
-
-<% end %>
-
+          <li class="gender">
+            <label for="gender">性別</label>
+            <%= f.select :gender, User.genders.keys, {prompt: '選択してください'} %>
+          </li>
+        </ul>
+        <div class = "user-update">
+        <%= f.submit '更新する', class: "btn btn-primary" %>
+        <%= link_to '退会する', users_unsubscribe_path,class: "btn btn-danger col-xs-offset-7",style: "font-size:12px;" %>
+      <% end %>
+    </div>
+  </div>

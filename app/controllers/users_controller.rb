@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(current_user.id)
-    if @user.update!(user_params)
+    if @user.update(user_params)
       redirect_to user_path(@user)
     else
       render "edit"
@@ -16,11 +16,16 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
   end
 
-  def withdraw
-    @user = User.find(current_customer.id)
-    @user.update(is_deleted: true)
-    redirect_to root_path
+  def hide
+        @user = User.find(params[:id])
+        #is_deletedカラムにフラグを立てる(defaultはfalse)
+        @user.update(is_deleted: true)
+        #ログアウトさせる
+        reset_session
+        redirect_to root_path
   end
+
+
 
   private
   def user_params

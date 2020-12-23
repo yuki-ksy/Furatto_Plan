@@ -1,22 +1,44 @@
-マイページ
+<div class = "container">
+
+    <h4 class = "title", style = "margin: 30px;">MY PAGE　~登録情報~</h4>
 
 
-登録情報
+  <div class = "row">
+    <div class = "col-3">
+      <%= attachment_image_tag @user, :profile_image, fallback:"no_image.jpg", size: '150x150' %></br>
+      <%= @user.user_name %>
+    </div>
+
+    <div class = "col-9">
+      <ul>
+        <li class="full_name">
+          <label for="full_name">氏名</label>
+          <%= @user.last_name %>&nbsp;&nbsp;<%= @user.first_name %>
+        </li>
+
+        <li class="full_name_kana">
+          <label for="full_name_kana">氏名（カナ）</label>
+          <%= @user.last_name_kana %>&nbsp;&nbsp;<%= @user.first_name_kana %>
+        </li>
 
 
-<%= link_to '編集する', edit_user_path, class: "btn btn-success" %>
-<%= link_to "パスワードを変更する",edit_user_password_path , class: 'btn btn-primary' %>
+        <li class="gender">
+          <label for="gender">性別</label>
+          <%= @user.gender %>
+        </li>
+
+        <li class="email">
+          <label for="email">メールアドレス</label>
+          <%= @user.email %>
+        </li>
+      </ul>
+    </div>
+  </div>
 
 
-<%= attachment_image_tag @user, :profile_image, fallback:"no_image.jpg", size: '40x40' %>
-
-<%= @user.user_name %>
-
-<%= @user.last_name %>&nbsp;&nbsp;<%= @user.first_name %>
-
-<%= @user.last_name_kana %>&nbsp;&nbsp;<%= @user.first_name_kana %>
-
-<%= @user.gender %>
-
-<%= @user.email %>
-
+  <div class = "col-9">
+    <div class="float-right test-box">
+    <%= link_to '編集する', edit_user_path, class: "btn btn-success" %>
+    <%= link_to "パスワードを変更する", edit_user_registration_path, class: 'btn btn-primary' %>
+    </div>
+  </div>

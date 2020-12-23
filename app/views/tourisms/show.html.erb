@@ -1,35 +1,67 @@
+<div class = container>
+  <strong><h1><%= @tourism.name %></h1></strong>
+  <div class = row>
+    <div class = col-md-12>
 
-<% if @tourism.images.present? %>
-  <% @tourism.images.each do |image| %>
-    <%= attachment_image_tag image, :image, class: "default_image", size: '200x200' %>
-  <% end %>
-<% else %>
-  画像はありません。
-<% end %>
-<%= @tourism.name %>
+      <% if @tourism.images.present? %>
+        <% @tourism.images.each do |image| %>
+          <%= attachment_image_tag image, :image, class: "default_image", size: '1100x400' %>
+        <% end %>
+      <% else %>
+        <%= image_tag 'noimage.png', size: '1100x400' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class = row>
+    <div class = col-md-12>
+      <div class="text-right" >
 
 
-<%= @tourism.production %>
+        <% if user_signed_in? %>
+        <div id="favorite-<%= @tourism.id %>">
+          <%= render partial: 'favorites/favorite', locals: { tourism: @tourism } %>
+        </div>
+        <% end %>
 
-<%= @tourism.prefecture.name %>
+      </div>
+    </div>
+  </div>
 
-<%= @tourism.genre.genre %>
 
-<%= @tourism.budget %>
 
-<h2>gmap</h2>
+  <div class = row>
+    <div class = col-md-12>
+      <div class="text-left">
+        <h4>スポット概要</h4>
+        <div class="border border-secondary">
+          <%= @tourism.production %>
+        </div>
+        都道府県：
+        <%= @tourism.prefecture.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        目的：
+        <%= @tourism.genre.genre %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        予算：
+        <%= @tourism.budget %>円
+      </div>
+    </div>
+  </div>
 
+  <h3>map</h3>
+  <%= @tourism.address %>
 <!-- 地名入力用のinputを追加 -->
-<input id="address" type="textbox" value="Sydney, NSW">
+<!--<input id="address" type="textbox" value="Sydney, NSW">-->
 
 <!-- buttonをクリックしたらcodeAddressを実行　-->
-<input type="button" value="Encode" onclick="codeAddress()">
-<div id='map'>
-</div>
+<!--<input type="button" value="Encode" onclick="codeAddress()">-->
+  <div id='map'>
+  </div>
 
 <style>
+/*mapのサイズ*/
 #map{
   height: 400px;
+  width: 1100px;
 }
 </style>
 
@@ -43,44 +75,59 @@ let map
 let geocoder
 
 function initMap(){
+  $('#map').hide();
+
   // geocoderを初期化
   geocoder = new google.maps.Geocoder()
 
   map = new google.maps.Map(document.getElementById('map'), {
-  center: {lat: -34.397, lng: 150.644},
+  center: {lat: 35.659055, lng: 139.70352},
   zoom: 15
   });
+  codeAddress();
 }
 
 function codeAddress(){
   // 入力を取得
-  let inputAddress = document.getElementById('address').value;
+  // let inputAddress = document.getElementById('address').value;
 
   // geocodingしたあとmapを移動
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+  geocoder.geocode( { 'address': gon.address}, function(results, status) {
+  // geocoder.geocode( { 'address': inputAddress}, function(results, status) {
     if (status == 'OK') {
-　　　　　　　　　　　　// map.setCenterで地図が移動
+　　　// map.setCenterで地図が移動
       map.setCenter(results[0].geometry.location);
 
-　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
       var marker = new google.maps.Marker({
           map: map,
           position: results[0].geometry.location
       });
+      $('#map').show();
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
 }
 </script>
+<!--googlemapにアクセス-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtFclsFZ7hxrqznj119W8VtXE9aaLYdjs&callback=initMap" async defer></script>
 
+  <div class = row>
+    <div class = col-md-12>
+      <div class="text-right" >
+        <% if @tourism.user == current_user %>
+          <%= link_to '編集する', edit_tourism_path, class: "btn btn-success" %>
+          <%= link_to "削除する", tourism_path(@tourism.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<% if @tourism.user == current_user %>
-  <%= link_to 'Edit', edit_tourism_path, class: "btn btn-success" %>
-  <%= link_to "Destroy", tourism_path(@tourism.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-<% end %>
 
-<div id="comments-<%= @tourism.id %>">
-  <%= render partial: 'comments/comment', locals: { tourism: @tourism,tourism_comment: @tourism_comment ,tourism_comments: @tourism_comments } %>
+<% if user_signed_in? %>
+  <div id="comments-<%= @tourism.id %>">
+    <%= render partial: 'comments/comment', locals: { tourism: @tourism,tourism_comment: @tourism_comment ,tourism_comments: @tourism_comments } %>
+  </div>
+  <% end %>
 </div>

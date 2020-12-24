@@ -36,4 +36,3 @@
 参考サイト
 <https://play-life.jp/>
 
-修正用commit

@@ -1,20 +1,21 @@
 <div class = container>
   <!--何の検索結果か表示する-->
+  <h4>
   <% if @prefecture_name || @genre_name || @budget %>
     <% if @prefecture_name %>
-      <%="Prefecture:#{@prefecture_name}"%>
+      <%="都道府県:#{@prefecture_name}"%>
     <% end %>
     <% if @genre_name %>
-      <%="Genre:#{@genre_name}"%>
+      <%="目的:#{@genre_name}"%>
     <% end %>
     <% if @budget %>
-      <%= "Budget:#{@budget}" %>
+      <%= "予算:#{@budget}" %>
     <% end %>
     <%="の検索結果" %>
   <% else %>
     <%= "全ての検索結果" %>
   <% end %>
-
+  </h4>
 
   <%= form_with url:tourisms_path, method: :get, local: true do |f| %>
     <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: "---"}) %>
@@ -24,15 +25,13 @@
   <% end %>
 
 
-<div class = "tourism-index">
-  <% @tourisms.each do |tourism| %>
-<div class = "spot-image">
-
-<%= attachment_image_tag tourism.images.first, :image, fallback:"noimage.png", class: "default_image", size: '300x300' %></br>
-    <strong><%= link_to tourism.name, tourism_path(tourism) %></strong>
-
-</div>
-  <% end %>
-</div>
+  <div class = "tourism-index">
+    <% @tourisms.each do |tourism| %>
+      <div class = "spot-image">
+        <%= attachment_image_tag tourism.images.first, :image, fallback:"noimage.png", class: "default_image", size: '300x300' %></br>
+        <strong><%= link_to tourism.name, tourism_path(tourism) %></strong>
+      </div>
+    <% end %>
+  </div>
 </div>
 

@@ -1,14 +1,12 @@
 <div class = "container">
-
   <% if @tourism.errors.any? %>
     <ul>
       <%= @tourism.errors.count %>errors prohibited this obj from being saved:
       <% @tourism.errors.full_messages.each do |message| %>
-       <li><%= message %></li>
+        <li><%= message %></li>
       <% end %>
     </ul>
   <% end %>
-
 
   <h4 class = "title", style = "margin: 30px;">スポット編集</h4>
   <div class = "row">

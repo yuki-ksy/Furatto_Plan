@@ -2,7 +2,6 @@
   <strong><h1><%= @tourism.name %></h1></strong>
   <div class = row>
     <div class = col-md-12>
-
       <% if @tourism.images.present? %>
         <% @tourism.images.each do |image| %>
           <%= attachment_image_tag image, :image, class: "default_image", size: '1100x400' %>
@@ -16,19 +15,14 @@
   <div class = row>
     <div class = col-md-12>
       <div class="text-right" >
-
-
         <% if user_signed_in? %>
-        <div id="favorite-<%= @tourism.id %>">
-          <%= render partial: 'favorites/favorite', locals: { tourism: @tourism } %>
-        </div>
+          <div id="favorite-<%= @tourism.id %>">
+            <%= render partial: 'favorites/favorite', locals: { tourism: @tourism } %>
+          </div>
         <% end %>
-
       </div>
     </div>
   </div>
-
-
 
   <div class = row>
     <div class = col-md-12>
@@ -125,9 +119,9 @@ function codeAddress(){
   </div>
 
 
-<% if user_signed_in? %>
-  <div id="comments-<%= @tourism.id %>">
-    <%= render partial: 'comments/comment', locals: { tourism: @tourism,tourism_comment: @tourism_comment ,tourism_comments: @tourism_comments } %>
-  </div>
+  <% if user_signed_in? %>
+    <div id="comments-<%= @tourism.id %>">
+      <%= render partial: 'comments/comment', locals: { tourism: @tourism,tourism_comment: @tourism_comment ,tourism_comments: @tourism_comments } %>
+    </div>
   <% end %>
 </div>

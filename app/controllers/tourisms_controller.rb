@@ -1,6 +1,10 @@
 class TourismsController < ApplicationController
   def new
-    @tourism = Tourism.new
+    if user_signed_in?
+     @tourism = Tourism.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
@@ -30,12 +34,7 @@ class TourismsController < ApplicationController
       @tourisms = @tourisms.where("tourisms.budget <= ?", params[:budget])
     end
     # =ここまで=========================================================================
-
-
   end
-
-
-
 
   def show
     @tourism = Tourism.find(params[:id])
@@ -47,10 +46,12 @@ class TourismsController < ApplicationController
     gon.address = @tourism.address
   end
 
-
-
   def edit
-    @tourism = Tourism.find(params[:id])
+    if user_signed_in?
+      @tourism = Tourism.find(params[:id])
+    else
+      redirect_to root_path
+    end
   end
 
   def update
@@ -62,13 +63,11 @@ class TourismsController < ApplicationController
     end
   end
 
-
   def destroy
     tourism = Tourism.find(params[:id])
     tourism.destroy
     redirect_to root_path
   end
-
 
   private
 
@@ -76,5 +75,4 @@ class TourismsController < ApplicationController
     params[:tourism][:user_id] = current_user.id
     params.require(:tourism).permit(:user_id, :genre_id, :prefecture_id, :name, :production, :budget, :address, images_images: [])
   end
-
 end

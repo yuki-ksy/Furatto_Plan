@@ -2,6 +2,13 @@
   <div class = "container">
     <div class="row justify-content-around">
       <div class = "main-visual">
+        <div class = "top-tatle">
+          <p>Furatto Plan</p>
+          </div>
+          <div class = "top-body">
+          <p>ふらっと遊びに行く</p>
+          </div>
+
         <div class="search" style="width: 80%;">
           <%= form_with url:tourisms_path, method: :get, local: true do |f| %>
           <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: "都道府県を選択"}) %>
@@ -14,7 +21,7 @@
     </div>
 
     <div class = "row" style="margin: 30px;">
-      <h3>❤️いいね！Ranking ~TOP3~</h3>
+      <h3>️いいね！Ranking ~TOP3~</h3>
     </div>
 
     <div class = "row">

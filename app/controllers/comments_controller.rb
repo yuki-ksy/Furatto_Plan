@@ -16,8 +16,6 @@ class CommentsController < ApplicationController
     @tourism_comments = @tourism.comments
   end
 
-
-
   private
   def tourism_comment_params
     params.require(:comment).permit(:comment)

@@ -17,19 +17,16 @@ class UsersController < ApplicationController
   end
 
   def hide
-        @user = User.find(params[:id])
-        #is_deletedカラムにフラグを立てる(defaultはfalse)
-        @user.update(is_deleted: true)
-        #ログアウトさせる
-        reset_session
-        redirect_to root_path
+    @user = User.find(params[:id])
+    #is_deletedカラムにフラグを立てる(defaultはfalse)
+    @user.update(is_deleted: true)
+    #ログアウトさせる
+    reset_session
+    redirect_to root_path
   end
-
-
 
   private
   def user_params
     params.require(:user).permit(:first_name, :last_name, :last_name_kana, :first_name_kana, :user_name, :gender, :profile_image)
   end
-
 end

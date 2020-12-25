@@ -11,7 +11,6 @@
 ### テーマを選んだ理由
 急に出かけたい気分になった時に気軽に検索できるサイト
 
-
 ### ターゲットユーザ
 休日を充実させたい人
 
@@ -21,6 +20,17 @@
 ふらっと出かけたい時
 
 ## 設計書
+UI Flows
+<https://app.diagrams.net/#G1PdB6LgPbYKKQMWlAkXMXvZNYoP9dMqy2>
+ワイヤーフレーム
+<https://app.diagrams.net/#G1q5JTTRGpwmCbDahvGC7No5vvh1mmT26E>
+ER図
+<https://app.diagrams.net/#G1XHjO_2JLby4uKDa7lO9MtJkTwQNzKd_E>
+テーブル定義書
+<https://docs.google.com/spreadsheets/d/1AQV1jOtLZvYk0htOkiKlT6zZmynBpcH-TYAC-Tk4s2k/edit#gid=0>
+アプリケーション詳細設計書
+<https://docs.google.com/spreadsheets/d/1wjnZKc6LQV8JqeGyNIZAEvnM20SWm4LqDGTGk9WByhM/edit#gid=1736837917>
+
 
 ### 機能一覧
 <https://docs.google.com/spreadsheets/d/1VLg8AbOROSqxCqsYPqQwvo54yFBgpT0u9_Ued9CLjCg/edit?usp=sharing>
@@ -35,4 +45,5 @@
 ## 使用素材
 参考サイト
 <https://play-life.jp/>
-
+画像
+<https://www.pexels.com/ja-jp/>

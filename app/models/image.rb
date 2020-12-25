@@ -1,5 +1,4 @@
 class Image < ApplicationRecord
   belongs_to :tourism
-
-   attachment :image
+  attachment :image
 end

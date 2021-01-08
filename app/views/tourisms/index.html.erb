@@ -17,6 +17,7 @@
   <% end %>
   </h4>
 
+  <!--検索フォーム-->
   <%= form_with url:tourisms_path, method: :get, local: true do |f| %>
     <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: "---"}) %>
     <%= f.collection_select(:genre_id, Genre.all, :id, :genre, {prompt: "---"}) %>
@@ -24,7 +25,7 @@
     <%= f.submit 'スポットを検索' %>
   <% end %>
 
-
+  <!--スポット一覧表示-->
   <div class = "tourism-index">
     <% @tourisms.each do |tourism| %>
       <div class = "spot-image">
